@@ -10,5 +10,9 @@ public class Main {
 
         Shape shape2 = shapeFactory.getShape("RECTANGLE");
         shape2.draw();
+
+        // here what we are doing is 
+        // instead of creating objects of circle, rectange, seperately
+        // we are initiating with the help of shapefactory class
     }
 }
