@@ -14,7 +14,7 @@ public abstract class ParkingSlot {
         this.vehicle = null;
     }
 
-    public boolean isAlreadyOccupied(){
+    public boolean isOcupied(){
         return this.isOccupied;
     }
 
@@ -27,10 +27,10 @@ public abstract class ParkingSlot {
     public void parkedVehicle(Vehicle vehicle){
         this.isOccupied = true;
         this.vehicle = vehicle;
-        System.out.println("Vecicle number" + vehicle.getVehicleNumber() + " is parked in slot no"
+        System.out.println("Vecicle number" + vehicle.getVehicleNumber() + " is parked in slot no "
             + this.slotNumber);
     }
 
-    public abstract boolean canFitVechile(Vehicle vehicle){};
+    public abstract boolean canFitVechile(Vehicle vehicle);
 
 }

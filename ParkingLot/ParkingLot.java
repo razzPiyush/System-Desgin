@@ -12,42 +12,62 @@ public class ParkingLot {
     // Applied Singelton pattern so that only one instnace of ParkingLot is created
     private static ParkingLot instance;
 
-    private ParkingLot() {
+    private ParkingLot(int capacity) {
         this.slots = new ArrayList<>();
-        this.capacity = 100;
+        this.capacity = capacity;
         vechileVsPakringSlot = new HashMap<>();
-        for(int i=0; i<this.capacity; i++){
-            slots.add(new ParkingSlot(i));
-        }
     };
 
-    public static ParkingLot getInstance(){
+    public static ParkingLot getInstance(int capacity){
         if(instance==null){
-            return new ParkingLot();
+            return new ParkingLot(capacity);
         }
         return instance;
     }
 
     public void newVehicle(Vehicle vehicle){
         // fnid the nerest parking slot which is freee
-        for(int i=0; i<this.capacity; i++){
-
+        boolean isEmptySlotPresnt = false;
+        for(ParkingSlot slot : slots){
+            if(slot!=null && !slot.isOcupied() && slot.canFitVechile(vehicle)){
+                slot.parkedVehicle(vehicle);
+                vechileVsPakringSlot.put(vehicle, slot);
+                isEmptySlotPresnt = true;
+                break;
+            }  
+        }
+        if(!isEmptySlotPresnt){
+            System.out.println("Sorry, no empty slot present for this vechile");
         }
     }
 
     public void leaveVechicle(Vehicle vehicle){
-
+        ParkingSlot slot = vechileVsPakringSlot.get(vehicle);
+        if(slot!=null && slot.isOcupied()){
+            slot.freeSlot();
+            vechileVsPakringSlot.remove(vehicle);
+        }
+        else{
+            System.out.println("No, such vechile is parked");
+        }
     }
 
     public List<ParkingSlot> getAvailableParkingSlots(){
         List<ParkingSlot> avialableParkingSlots = new ArrayList<>();
-
+        for(ParkingSlot slot : slots){
+            if(slot!=null && !slot.isOcupied()){
+                slots.add(slot);
+            }
+        }
         return avialableParkingSlots;
     }
 
     public void addParkingSlot(ParkingSlot parkingSlot){
-        for(int i=0; i<this.capacity; i++){
-
+        if(slots.size() < this.capacity){
+            slots.add(parkingSlot);
+        }
+        else{
+            System.out.println("No space for adding new parking spot");
         }
     }
 

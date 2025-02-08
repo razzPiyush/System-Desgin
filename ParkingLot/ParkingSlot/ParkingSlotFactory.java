@@ -2,7 +2,7 @@ package ParkingLot.ParkingSlot;
 
 public class ParkingSlotFactory {
     
-    public ParkingSlot getParkingSlotType(String parkingSlotType, int slotNumber){
+    public ParkingSlot createParkingSlotType(String parkingSlotType, int slotNumber){
         if(parkingSlotType==null){
             return null;
         }
