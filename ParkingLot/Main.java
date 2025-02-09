@@ -23,7 +23,7 @@ public class Main {
                 parkingLot.addParkingSlot(parkingSlotFactory.createParkingSlotType("Truck", i));
             }
         }
-        Vehicle car = new Car("BRXX002");
+        Car car = new Car("BRXX002");
         Vehicle bike = new Motorcycle("BRFGRG");
         Vehicle truck = new Truck("BRRGEG");
         Vehicle car1 = new Car("BRXX001");
