@@ -5,7 +5,7 @@ public class Main {
         TicTacToeGame game = new TicTacToeGame();
         game.intializeGame();
         String result = game.startGame();
-        if(result=="Tie"){
+        if(result.equalsIgnoreCase("Tie")){
             System.out.println("The game is tie");
         }
         else{
